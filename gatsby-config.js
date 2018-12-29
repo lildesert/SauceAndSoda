@@ -13,10 +13,25 @@ module.exports = {
         path: `${ __dirname }/src/`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${ __dirname }/content/blog`,
+        name: `blog`,
+      },
+    },
     'gatsby-transformer-sharp',
     `gatsby-transformer-remark`,
     'gatsby-plugin-sharp',
     'gatsby-plugin-sass',
+    `gatsby-plugin-styled-components`,
+    `gatsby-remark-copy-linked-files`,
+    {
+      resolve: `gatsby-remark-images`,
+      options: {
+        maxWidth: 1080,
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
