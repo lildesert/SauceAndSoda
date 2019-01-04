@@ -27,6 +27,12 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-remark-copy-linked-files`,
     {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography.js`,
+      },
+    },
+    {
       resolve: `gatsby-remark-images`,
       options: {
         maxWidth: 1080,
