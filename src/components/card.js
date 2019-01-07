@@ -3,16 +3,11 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 
-const Post = styled.li`
+const Post = styled.div`
   position: relative;
-  border: 1px solid $primary;
-  border-radius: 2px;
   margin: 0 0 1em 0;
   width: 100%;
   transition: background 0.2s;
-  @media screen and (min-width: $tablet) {
-    flex: 0 0 32%;
-  }
   &:hover {
     background: $link;
   }
@@ -49,7 +44,7 @@ const Excerpt = styled.p`
 
 const Card = ({ fields, frontmatter, excerpt, ...props }) => {
   return (
-    <Post featured={props.featured}>
+    <Post className='column is-half' featured={props.featured}>
       <Link to={`/${ fields.slug }/`}>
         <Img sizes={frontmatter.coverImage.childImageSharp.sizes} backgroundColor={'#eeeeee'} />
         <Title>{frontmatter.title}</Title>

@@ -1,16 +1,21 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import styled from 'styled-components'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import CardList from '../components/cardList'
 import Card from '../components/card'
 
+const Title = styled.h2`
+  margin-top: 0;
+`
+
 const IndexPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Home" keywords={['gatsby', 'application', 'react']} />
-      <h2 className="title">Bienvenue sur Sauce And Soda</h2>
+      <Title className="title">Bienvenue sur Sauce And Soda</Title>
       <p className="subtitle">Laissez vous guider par M. Sauce et M. Soda à la découverte de recettes, astuces
         et inspirations autour du barbecue et des cocktails.</p>
 
@@ -36,7 +41,7 @@ export const query = graphql`
             coverImage {
               publicURL
               childImageSharp {
-                sizes(maxWidth: 630) {
+                sizes(maxWidth: 800) {
                   ...GatsbyImageSharpSizes
                 }
               }
