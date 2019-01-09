@@ -2,6 +2,7 @@
 title: 'Sauce barbecue'
 date: '2018-12-20'
 coverImage: './bbq-sauce.jpg'
+category: 'sauce'
 ---
 
 Ingredients
