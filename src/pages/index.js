@@ -37,7 +37,7 @@ export const query = graphql`
           id
           frontmatter {
             title
-            date(formatString: "DD MMMM, YYYY")
+            date(formatString: "DD MMMM, YYYY", locale: "fr")
             category
             coverImage {
               publicURL
