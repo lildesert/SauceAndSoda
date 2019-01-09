@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components'
 
 import Header from './header'
 import './layout.scss'
-import theme from '../styles/theme'
+import theme from '../utils/theme'
 
 const Layout = ({ children }) => (
   <StaticQuery
