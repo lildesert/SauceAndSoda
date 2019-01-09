@@ -24,14 +24,7 @@ const Layout = ({ children }) => (
           <section className="hero">
             <Header siteTitle={data.site.siteMetadata.title} />
             <div className="hero-body">
-              <div className="container"
-                style={{
-                  margin: '0 auto',
-                  maxWidth: 960,
-                  padding: '0px 1.0875rem 1.45rem',
-                  paddingTop: 0,
-                }}
-              >
+              <div className="container">
                 {children}
               </div>
             </div>

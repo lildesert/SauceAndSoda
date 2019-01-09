@@ -12,7 +12,9 @@ import {
   faTwitter,
   faYoutube
 } from '@fortawesome/free-brands-svg-icons'
-import { faBars, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faSpinner,
+  faLongArrowAltRight
+} from '@fortawesome/free-solid-svg-icons'
 
 // By setting things up like this react-fontawesome knows of the icons
 // I am also only using these icons from the libraries so less overhead.
@@ -23,19 +25,14 @@ library.add(
   faMediumM,
   faTwitter,
   faYoutube,
-  faBars
+  faLongArrowAltRight
 )
 
 console.log(library)
 
 const UnstyledIcon = props => <FontAwesomeIcon {...props} />
 
-export const StyledIcon = styled(UnstyledIcon)`
-  color: ${ ({ nav, theme }) =>
-    nav === 'true' ? theme.colors.primary : theme.colors.black };
-  font-size: 1.75rem;
-  margin: 0 0.5rem;
-`
+export const StyledIcon = styled(UnstyledIcon)``
 
 StyledIcon.propTypes = {
   nav: string

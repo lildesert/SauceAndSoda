@@ -1,10 +1,17 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const Container = styled.div`
+  &.columns {
+    margin-top: 1rem;
+  }
+`
 
 const CardList = props => {
   return (
-    <div className='columns'>
+    <Container className='columns'>
       {props.children}
-    </div>
+    </Container>
   )
 }
 

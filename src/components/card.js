@@ -2,59 +2,107 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
+import { StyledIcon } from './icon'
 
 const Post = styled.div`
-  position: relative;
-  margin: 0 0 1em 0;
-  width: 100%;
-  transition: background 0.2s;
-  &:hover {
-    background: $link;
+  margin-bottom: 1rem;
+  .gatsby-image-wrapper {
+    height: 0;
+    padding-bottom: 60%;
   }
-  a {
-    display: flex;
-    flex-flow: column;
-    height: 100%;
-    width: 100%;
-    color: $primary;
-    text-decoration: none;
-    .gatsby-image-wrapper {
-      height: 0;
-      padding-bottom: 60%;
-    }
+`
+
+const Thumbnail = styled(Link)`
+  position: relative;
+  display: block;
+`
+
+const Overlay = styled.div`
+  position: absolute;
+  z-index: 101;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  opacity: 0;
+  transition: opacity .4s ease;
+  :hover{
+    opacity: 0.14;
   }
 `
 
 const Title = styled.h2`
-  font-size: 1.5em;
-  font-weight: 600;
   text-transform: capitalize;
-  margin: 1rem 1rem 0.5rem 1rem;
+  margin: 1rem .5rem .5rem;
 `
 
-const Date = styled.h3`
-  margin: 0 1rem 1.5rem 1rem;
-  color: gray;
+const Meta = styled.div`
+  margin: 1rem .5rem 0;
+  color: #2b2b2b;
+  font-weight: 300;
+`
+
+const Category = styled.span`
+  :before {
+    display: inline-block;
+    position: relative;
+    bottom: .3rem;
+    margin: 0 .7rem 0 1rem;
+    content: "";
+    height: 1px;
+    width: 4.0rem;
+    background-color: #8b8b8b;
+  }
 `
 
 const Excerpt = styled.p`
-  margin: 0 1rem 1rem 1rem;
+  margin: 0 .5rem 1rem;
   line-height: 1.6;
+`
+
+const MoreArrow = styled(StyledIcon)`
+  position: relative;
+  transition: all .08s linear;
+  left: 0px;
+`
+
+const MoreLink = styled(Link)`
+  margin: 0 .5rem;
+  display: inline-block;
+  &:hover ${ MoreArrow } {
+    left: 2px;
+  }
+`
+
+const MoreLinkSpan = styled.span`
+  margin-right: 8px;
 `
 
 const Card = ({ fields, frontmatter, excerpt, ...props }) => {
   return (
-    <Post className='column is-half' featured={props.featured}>
-      <Link to={`/${ fields.slug }/`}>
+    <Post className='column is-one-third' featured={props.featured}>
+      <Thumbnail to={`/${ fields.slug }/`}>
         <Img sizes={frontmatter.coverImage.childImageSharp.sizes} backgroundColor={'#eeeeee'} />
+        <Overlay />
+      </Thumbnail>
+      <Meta className='is-lowercase'>
+        <span>{frontmatter.date}</span>
+        <Category>{frontmatter.category}</Category>
+      </Meta>
+      <Link to={`/${ fields.slug }/`}>
         <Title>{frontmatter.title}</Title>
-        <Date>{frontmatter.date}</Date>
-        <Excerpt
-          dangerouslySetInnerHTML={{
-            __html: excerpt,
-          }}
-        />
       </Link>
+      <Excerpt
+        dangerouslySetInnerHTML={{
+          __html: excerpt,
+        }}
+      />
+      <MoreLink to={`/${ fields.slug }/`}>
+        <MoreLinkSpan>lire</MoreLinkSpan>
+        <MoreArrow nav="true" icon='long-arrow-alt-right' />
+      </MoreLink>
+
     </Post>
   )
 }

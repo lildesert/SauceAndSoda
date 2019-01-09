@@ -4,26 +4,26 @@ import styled from 'styled-components'
 import Icon from './icon'
 import logo from '../images/sauceandsoda.png' // logomakr.com/8KQU24
 
-const Container = styled.div`
-  padding: 8px 0;
+const Menu = styled.div`
+  padding: 24px 0;
+  font-size: 1.1rem;
+  &.navbar-start {
+    flex-grow: 1; 
+    justify-content: center;
+  }
 `
 
-const Logo = styled.img`
-  max-width: 140px;
-  margin-bottom: 0px;
-`
-
-const DesktopMenu = styled.div`
-  padding: 16px 0;
+const SocialMediaLabel = styled.span`
+  margin-right: 5px;
 `
 
 const Header = () => (
-  <Container className="hero-head">
+  <div className="hero-head">
     <nav className="navbar">
       <div className="container">
         <div className="navbar-brand">
-          <Link to="/">
-            <Logo src={logo} alt="Logo" />
+          <Link className="navbar-item" to="/">
+            <img src={logo} alt="Logo" />
           </Link>
           <span className="navbar-burger burger" data-target="navbarMenuHeroA">
             <span></span>
@@ -31,8 +31,8 @@ const Header = () => (
             <span></span>
           </span>
         </div>
-        <DesktopMenu id="navbarMenuHeroA" className="navbar-menu">
-          <div className="navbar-end">
+        <div id="navbarMenuHeroA" className="navbar-menu">
+          <Menu className="navbar-start is-uppercase">
             <a className="navbar-item is-active">
               BBQ
             </a>
@@ -42,17 +42,24 @@ const Header = () => (
             <a className="navbar-item">
               Sauces
             </a>
+            <a className="navbar-item">
+              A propos
+            </a>
+          </Menu>
+          <div className="navbar-end">
             <span className="navbar-item">
-              <a className="button is-primary is-inverted">
-                <Icon nav="true" icon={['fab', 'github']} size='1x' />
-                <span>Download</span>
-              </a>
+              <SocialMediaLabel>nous suivre :</SocialMediaLabel>
+              <Link to="/">
+                <span className="icon">
+                  <Icon nav="true" icon={['fab', 'twitter']} />
+                </span>
+              </Link>
             </span>
           </div>
-        </DesktopMenu>
+        </div>
       </div>
     </nav>
-  </Container>
+  </div>
 )
 
 export default Header
