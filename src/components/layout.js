@@ -1,11 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 
 import Header from './header'
 import './layout.scss'
 import theme from '../utils/theme'
+
+const Copyright = styled.div`
+  padding: 1rem 0;
+  font-size: 0.85rem;
+`
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -29,6 +34,7 @@ const Layout = ({ children }) => (
               </div>
             </div>
             <div className="hero-foot">
+              <Copyright className='has-text-centered'>© {new Date().getFullYear()} SauceAndSoda</Copyright>
             </div>
           </section>
         </>
