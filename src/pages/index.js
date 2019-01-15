@@ -16,9 +16,8 @@ const IndexPage = ({ data }) => {
     <Layout>
       <SEO title="Home" keywords={['gatsby', 'application', 'react']} />
       <Title className="title">Bienvenue sur Sauce And Soda</Title>
-      <p className="subtitle">Laissez vous guider par M. Sauce et M. Soda à la découverte de recettes, astuces
-        et inspirations autour du barbecue et des cocktails.</p>
-
+      <h3 className="subtitle">Laissez vous guider par M. Sauce et M. Soda à la découverte de recettes, astuces
+        et inspirations autour du barbecue et des cocktails.</h3>
       <CardList>
         {data.allMarkdownRemark.edges.map(({ node: post }) => (
           <Card key={post.id} {...post} />
