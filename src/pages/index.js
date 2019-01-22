@@ -14,7 +14,7 @@ const Title = styled.h2`
 const IndexPage = ({ data }) => {
   return (
     <Layout>
-      <SEO title="Home" keywords={['gatsby', 'application', 'react']} />
+      <SEO title="Accueil" keywords={['gatsby', 'application', 'react']} />
       <Title className="title">Bienvenue sur Sauce And Soda</Title>
       <h3 className="subtitle">Laissez vous guider par M. Sauce et M. Soda à la découverte de recettes, astuces
         et inspirations autour du barbecue et des cocktails.</h3>

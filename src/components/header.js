@@ -33,18 +33,21 @@ const Header = () => (
         </div>
         <div id="navbarMenuHeroA" className="navbar-menu">
           <Menu className="navbar-start is-uppercase">
-            <a className="navbar-item is-active">
+            <Link to="/" activeClassName="is-active" className="navbar-item">
+              Accueil
+            </Link>
+            <Link to="/category/bbq" activeClassName="is-active" className="navbar-item">
               BBQ
-            </a>
-            <a className="navbar-item">
-              Cocktails
-            </a>
-            <a className="navbar-item">
-              Sauces
-            </a>
-            <a className="navbar-item">
+            </Link>
+            <Link to="/category/cocktail" activeClassName="is-active" className="navbar-item">
+              Cocktail
+            </Link>
+            <Link to="/category/sauce" activeClassName="is-active" className="navbar-item">
+              Sauce
+            </Link>
+            <Link to="/about" activeClassName="is-active" className="navbar-item">
               A propos
-            </a>
+            </Link>
           </Menu>
           <div className="navbar-end">
             <span className="navbar-item">
