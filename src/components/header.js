@@ -1,5 +1,5 @@
 import { Link } from 'gatsby'
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import Icon from './icon'
 import logo from '../images/sauceandsoda.png' // logomakr.com/8KQU24
@@ -17,52 +17,70 @@ const SocialMediaLabel = styled.span`
   margin-right: 5px;
 `
 
-const Header = () => (
-  <div className="hero-head">
-    <nav className="navbar">
-      <div className="container">
-        <div className="navbar-brand">
-          <Link className="navbar-item" to="/">
-            <img src={logo} alt="Logo" />
-          </Link>
-          <span className="navbar-burger burger" data-target="navbarMenuHeroA">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </div>
-        <div id="navbarMenuHeroA" className="navbar-menu">
-          <Menu className="navbar-start is-uppercase">
-            <Link to="/" activeClassName="is-active" className="navbar-item">
-              Accueil
-            </Link>
-            <Link to="/category/bbq" activeClassName="is-active" className="navbar-item">
-              BBQ
-            </Link>
-            <Link to="/category/cocktail" activeClassName="is-active" className="navbar-item">
-              Cocktail
-            </Link>
-            <Link to="/category/sauce" activeClassName="is-active" className="navbar-item">
-              Sauce
-            </Link>
-            <Link to="/about" activeClassName="is-active" className="navbar-item">
-              A propos
-            </Link>
-          </Menu>
-          <div className="navbar-end">
-            <span className="navbar-item">
-              <SocialMediaLabel>nous suivre :</SocialMediaLabel>
-              <Link to="/">
-                <span className="icon">
-                  <Icon nav="true" icon={['fab', 'twitter']} />
-                </span>
+class Header extends Component {
+  // constructor to set state and bind "this"
+  constructor (props) {
+    super(props)
+    this.state = { showMenu: false }
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  // function to handle the click
+  handleClick () {
+    this.setState(prevState => ({
+      showMenu: !prevState.showMenu
+    }))
+  }
+
+  render () {
+    return (
+      <div className="hero-head">
+        <nav className="navbar">
+          <div className="container">
+            <div className="navbar-brand">
+              <Link className="navbar-item" to="/">
+                <img src={logo} alt="Logo" />
               </Link>
-            </span>
+              <div className={'navbar-burger burger' + (this.state.showMenu ? ' is-active' : '')} data-target="navbarMenuHeroA" onClick={this.handleClick}>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+            <div id="navbarMenuHeroA" className={'navbar-menu' + (this.state.showMenu ? ' is-active' : '')}>
+              <Menu className="navbar-start">
+                <Link to="/" activeClassName="is-active" className="navbar-item">
+                  Accueil
+                </Link>
+                <Link to="/category/bbq" activeClassName="is-active" className="navbar-item">
+                  BBQ
+                </Link>
+                <Link to="/category/cocktail" activeClassName="is-active" className="navbar-item">
+                  Cocktails
+                </Link>
+                <Link to="/category/sauce" activeClassName="is-active" className="navbar-item">
+                  Sauces
+                </Link>
+                <Link to="/about" activeClassName="is-active" className="navbar-item">
+                  A propos
+                </Link>
+              </Menu>
+              <div className="navbar-end">
+                <span className="navbar-item">
+                  <SocialMediaLabel>nous suivre :</SocialMediaLabel>
+                  <Link to="/">
+                    <span className="icon">
+                      <Icon nav="true" icon={['fab', 'twitter']} />
+                    </span>
+                  </Link>
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
+        </nav>
       </div>
-    </nav>
-  </div>
-)
+    )
+  }
+}
 
 export default Header
