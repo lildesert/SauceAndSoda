@@ -13,7 +13,8 @@ import {
   faYoutube
 } from '@fortawesome/free-brands-svg-icons'
 import { faSpinner,
-  faLongArrowAltRight
+  faLongArrowAltRight,
+  faHeart
 } from '@fortawesome/free-solid-svg-icons'
 
 // By setting things up like this react-fontawesome knows of the icons
@@ -25,7 +26,8 @@ library.add(
   faMediumM,
   faTwitter,
   faYoutube,
-  faLongArrowAltRight
+  faLongArrowAltRight,
+  faHeart
 )
 
 console.log(library)
