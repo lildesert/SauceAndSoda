@@ -1,6 +1,6 @@
 ---
 title: "Le Ti' Punch"
-subtitle: 'Une caresse ensoleillée venue des Antilles'
+subtitle: "« Le rhum n'est pas un vice, c'est une manière de survivre » H.Emingway"
 date: '2019-01-14'
 coverImage: './tipunch.jpg'
 category: 'cocktail'
