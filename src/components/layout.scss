@@ -1,8 +1,68 @@
 @import "~bulma/sass/utilities/initial-variables.sass";
 @import "~bulma/sass/utilities/functions.sass";
+
+$primary: #38B5E6; //#b3a577;
+$secondary: #FD5AE8;
+$black: $white;
+$white: hsl(0, 0%, 9%);
+$grey-dark: $white-ter;
+$grey-darker: $white-ter;
+$title-color: $primary;
+$link: $white-ter;
+$navbar-item-hover-background-color: initial;
+$navbar-item-active-color: $primary;
+$navbar-item-hover-color: $primary;
+$link-hover: $primary;
+
 @import "~bulma/bulma.sass";
+
+body {
+  background: $white;
+}
 
 .navbar-item img {
   max-height: 6rem;
   margin-bottom: 0;
+}
+
+.navbar-menu {
+  box-shadow: none;
+}
+
+@media(min-width: $tablet) {
+  .layout-border {
+    content: " ";
+    display: block;
+    position: fixed;
+    background: $white-ter;
+    z-index: 1001;
+  }
+
+  .layout-border-top {
+    left: 0;
+    width: 100%;
+    height: 20px;
+    top: 0;
+  }
+
+  .layout-border-left {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 20px;
+  }
+
+  .layout-border-bottom {
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+  }
+
+  .layout-border-right {
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 20px;
+  }
 }

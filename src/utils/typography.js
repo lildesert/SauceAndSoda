@@ -18,8 +18,13 @@ const typography = new Typography({
   bodyFontFamily: ['Lato', 'sans-serif'],
   bodyWeight: 400,
   boldWeight: 700,
-  headerColor: theme.colors.header,
+  headerColor: theme.colors.primary,
   bodyColor: theme.colors.body,
+  overrideThemeStyles: () => ({
+    'figure,img': {
+      marginBottom: 0,
+    }
+  })
 })
 
 export default typography

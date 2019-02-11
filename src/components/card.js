@@ -39,7 +39,6 @@ const Title = styled.h2`
 
 const Meta = styled.div`
   margin: 1rem .5rem 0;
-  color: #2b2b2b;
   font-weight: 300;
 `
 

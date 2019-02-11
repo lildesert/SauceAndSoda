@@ -2,7 +2,7 @@ import { Link } from 'gatsby'
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Icon from './icon'
-import logo from '../images/sauceandsoda.png' // logomakr.com/8KQU24
+import logo from '../images/sauceandsoda-black-transparent.png' // logomakr.com/8KQU24
 
 const Menu = styled.div`
   padding: 24px 0;
@@ -10,6 +10,13 @@ const Menu = styled.div`
   &.navbar-start {
     flex-grow: 1; 
     justify-content: center;
+  }
+`
+
+const Logo = styled.img`
+  background-color: ${ ({ theme }) => theme.colors.whiteTer };
+  :hover{
+    background-color: ${ ({ theme }) => theme.colors.primary };
   }
 `
 
@@ -39,7 +46,7 @@ class Header extends Component {
           <div className="container">
             <div className="navbar-brand">
               <Link className="navbar-item" to="/">
-                <img src={logo} alt="Logo" />
+                <Logo src={logo} alt="Logo" />
               </Link>
               <div className={'navbar-burger burger' + (this.state.showMenu ? ' is-active' : '')} data-target="navbarMenuHeroA" onClick={this.handleClick}>
                 <span></span>

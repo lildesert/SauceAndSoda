@@ -7,6 +7,12 @@ import Header from './header'
 import './layout.scss'
 import theme from '../utils/theme'
 
+const Section = styled.section`
+ @media (min-width: ${ ({ theme }) => theme.screen.tablet }) {
+    padding: 20px;
+  }
+`
+
 const Copyright = styled.div`
   padding: 1rem 0;
   font-size: 0.85rem;
@@ -26,7 +32,11 @@ const Layout = ({ children }) => (
     render={data => (
       <ThemeProvider theme={theme}>
         <>
-          <section className="hero">
+          <div className="layout-border layout-border-top" />
+          <div className="layout-border layout-border-left" />
+          <div className="layout-border layout-border-bottom" />
+          <div className="layout-border layout-border-right" />
+          <Section className="hero">
             <Header siteTitle={data.site.siteMetadata.title} />
             <div className="hero-body">
               <div className="container">
@@ -36,7 +46,7 @@ const Layout = ({ children }) => (
             <div className="hero-foot">
               <Copyright className='has-text-centered'>© {new Date().getFullYear()} SauceAndSoda</Copyright>
             </div>
-          </section>
+          </Section>
         </>
       </ThemeProvider>
     )}

@@ -1,21 +1,16 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import styled from 'styled-components'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import CardList from '../components/cardList'
 import Card from '../components/card'
 
-const Title = styled.h2`
-  margin-top: 0;
-`
-
 const IndexPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Accueil" keywords={['gatsby', 'application', 'react']} />
-      <Title className="title">Bienvenue sur Sauce And Soda</Title>
+      <h1 className="title">Bienvenue sur Sauce And Soda</h1>
       <h3 className="subtitle">Laissez vous guider par M. Sauce et M. Soda à la découverte de recettes, astuces
         et inspirations autour du barbecue et des cocktails.</h3>
       <CardList>

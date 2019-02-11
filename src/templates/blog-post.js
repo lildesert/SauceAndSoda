@@ -5,13 +5,8 @@ import styled from 'styled-components'
 import Layout from '../components/layout'
 import PageBody from '../components/pageBody'
 
-const Title = styled.h1`
-  
-`
-
 const Subtitle = styled.h3`
   max-width: 560px;
-  color: #5b5b5b;
   font-weight: 300;
 `
 
@@ -25,8 +20,8 @@ export default ({ data }) => {
     <Layout>
       <div className='columns'>
         <div className='column is-8 is-offset-2'>
-          <Title>{post.frontmatter.title}</Title>
-          <Subtitle className='is-italic'>{post.frontmatter.subtitle}</Subtitle>
+          <h1 className='title'>{post.frontmatter.title}</h1>
+          <Subtitle className='subtitle is-italic'>{post.frontmatter.subtitle}</Subtitle>
           <Thumbnail sizes={post.frontmatter.coverImage.childImageSharp.sizes} backgroundColor={'#eeeeee'} />
           <PageBody body={post.html} />
         </div>
