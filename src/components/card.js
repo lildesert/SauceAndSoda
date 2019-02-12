@@ -101,7 +101,6 @@ const Card = ({ fields, frontmatter, excerpt, ...props }) => {
         <MoreLinkSpan>lire</MoreLinkSpan>
         <MoreArrow nav="true" icon='long-arrow-alt-right' />
       </MoreLink>
-
     </Post>
   )
 }

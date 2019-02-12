@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   &.columns {
-    margin-top: 1rem;
+    margin-top: 3rem;
   }
 `
 

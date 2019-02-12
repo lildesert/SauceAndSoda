@@ -5,16 +5,18 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import CardList from '../components/cardList'
 import Card from '../components/card'
+import FeaturedPost from '../components/featuredPost'
 
 const IndexPage = ({ data }) => {
+  const featuredPost = data.allMarkdownRemark.edges[0].node
+  const posts = data.allMarkdownRemark.edges.slice(1)
   return (
     <Layout>
-      <SEO title="Accueil" keywords={['gatsby', 'application', 'react']} />
-      <h1 className="title">Bienvenue sur Sauce And Soda</h1>
-      <h3 className="subtitle">Laissez vous guider par M. Sauce et M. Soda à la découverte de recettes, astuces
-        et inspirations autour du barbecue et des cocktails.</h3>
+      <SEO title="Accueil" keywords={['cocktail', 'sauce', 'bbq',
+        'soda', 'sauceandsoda', 'barbecue', 'recette']} />
+      <FeaturedPost {...featuredPost} />
       <CardList>
-        {data.allMarkdownRemark.edges.map(({ node: post }) => (
+        {posts.map(({ node: post }) => (
           <Card key={post.id} {...post} />
         ))}
       </CardList>
