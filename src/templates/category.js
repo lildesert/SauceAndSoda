@@ -1,32 +1,37 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { graphql } from 'gatsby'
+import styled from 'styled-components'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import CardList from '../components/cardList'
 import Card from '../components/card'
 
+const CategoryLabel = styled.span`
+  font-weight: 300;
+  color: ${ ({ theme }) => theme.colors.muted };
+`
+
+const CategoryName = styled.span`
+  color: ${ ({ theme }) => theme.colors.primary };
+`
+
 const CategoryTemplate = props => {
   const {
     pageContext: { category },
     data: {
-      allMarkdownRemark: { totalCount, edges },
+      allMarkdownRemark: { edges },
     }
   } = props
 
   return (
     <Layout>
-      <SEO title="Home" keywords={['gatsby', 'application', 'react']} />
-      <span>Posts in category {category}</span>
-      <p className="meta">
-          There {totalCount > 1 ? 'are' : 'is'} <strong>{totalCount}</strong> post{totalCount >
-          1
-          ? 's'
-          : ''}{' '}
-                in the category.
-      </p>
-
+      <SEO title={category} keywords={[category, 'recette']} />
+      <div className='subtitle is-uppercase'>
+        <CategoryLabel>Categorie : </CategoryLabel>
+        <CategoryName>{category}</CategoryName>
+      </div>
       <CardList>
         {edges.map(({ node: post }) => (
           <Card key={post.id} {...post} />

@@ -7,10 +7,10 @@ const theme = {
     whiteTer: 'hsl(0, 0%, 100%)',
     body: 'hsl(0, 0%, 100%)',
     greyLight: 'hsl(0, 0%, 71%)',
-    primary: '#38B5E6', // '#b3a577',
-    secondary: '#FD5AE8', // '#b3a577',
+    primary: '#38B5E6',
     link: 'hsl(0, 0%, 100%)',
-    // muted: 'hsl(207, 13%, 68%)',
+    blackTer: 'hsl(0, 0%, 14%)',
+    muted: '#a2aeb8'
   },
   // Bulma breakpoints
   screen: {
