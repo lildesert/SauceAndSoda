@@ -1,5 +1,6 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const createPaginatedPages = require('gatsby-paginate')
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
@@ -19,20 +20,36 @@ exports.createPages = ({ graphql, actions }) => {
     const categoryTemplate = path.resolve('./src/templates/category.js')
     resolve(
       graphql(`
-        {
-          allMarkdownRemark {
-            edges {
-              node {
-                fields {
-                  slug
-                }
-                frontmatter {
-                  category
+      {
+        posts: allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
+          totalCount
+          edges {
+            node {
+              frontmatter {
+                title
+                date(formatString: "DD MMMM, YYYY", locale: "fr")
+                category
+                coverImage {
+                  publicURL
+                  childImageSharp {
+                    sizes(maxWidth: 800) {
+                      base64
+                      aspectRatio
+                      src
+                      srcSet
+                      sizes
+                    }
+                  }
                 }
               }
+              fields {
+                slug
+              }
+              excerpt
             }
           }
         }
+      }   
         `
       ).then(result => {
         if (result.errors) {
@@ -40,11 +57,18 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors)
         }
 
-        const items = result.data.allMarkdownRemark.edges
+        createPaginatedPages({
+          edges: result.data.posts.edges,
+          createPage: createPage,
+          pageTemplate: 'src/templates/index.js',
+          pageLength: 6,
+          pathPrefix: '',
+          context: {},
+        })
 
         // Create category list
         const categorySet = new Set()
-        items.forEach(edge => {
+        result.data.posts.edges.forEach(edge => {
           const {
             node: {
               frontmatter: { category }
@@ -70,7 +94,7 @@ exports.createPages = ({ graphql, actions }) => {
         })
 
         // Create blog posts
-        items.forEach(({ node }) => {
+        result.data.posts.edges.forEach(({ node }) => {
           createPage({
             path: node.fields.slug,
             component: path.resolve(`./src/templates/blog-post.js`),
