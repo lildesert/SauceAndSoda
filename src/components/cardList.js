@@ -9,7 +9,7 @@ const Container = styled.div`
 
 const CardList = props => {
   return (
-    <Container className='columns'>
+    <Container className='columns is-multiline'>
       {props.children}
     </Container>
   )

@@ -80,7 +80,7 @@ const MoreLinkSpan = styled.span`
 
 const Card = ({ fields, frontmatter, excerpt, ...props }) => {
   return (
-    <Post className='column is-one-third' featured={props.featured}>
+    <Post className='column is-one-third'>
       <Thumbnail to={`/${ fields.slug }/`}>
         <Img sizes={frontmatter.coverImage.childImageSharp.sizes} backgroundColor={'#eeeeee'} />
         <Overlay />
