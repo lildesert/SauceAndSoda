@@ -5,7 +5,6 @@ import Img from 'gatsby-image'
 import { StyledIcon } from './icon'
 
 const Container = styled.div`
-  background-color: ${ ({ theme }) => theme.colors.blackTer };
   &.columns {
     margin: 0;
 
@@ -96,7 +95,7 @@ const MoreLinkSpan = styled.span`
 
 const FeaturedPost = ({ fields, frontmatter, excerpt, ...props }) => {
   return (
-    <Container className="columns is-vcentered">
+    <Container className="card columns is-vcentered">
       <ImagePanel className='column is-7'>
         <Thumbnail to={`/${ fields.slug }/`}>
           <Img sizes={frontmatter.coverImage.childImageSharp.sizes} backgroundColor={'#eeeeee'} />
