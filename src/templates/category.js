@@ -63,8 +63,8 @@ export const categoryQuery = graphql`
             coverImage {
               publicURL
               childImageSharp {
-                sizes(maxWidth: 800) {
-                  ...GatsbyImageSharpSizes
+                fluid(maxWidth: 800) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }

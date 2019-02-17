@@ -102,7 +102,7 @@ const Card = ({ fields, frontmatter, excerpt, ...props }) => {
       <Container className={props.featured ? 'card is-vcentered columns' : '' }>
         <ImagePanel className={props.featured ? 'column is-7' : '' }>
           <Thumbnail to={`/${ fields.slug }/`}>
-            <Img sizes={frontmatter.coverImage.childImageSharp.sizes}
+            <Img fluid={frontmatter.coverImage.childImageSharp.fluid}
               backgroundColor={'#eeeeee'} />
             <Overlay />
           </Thumbnail>

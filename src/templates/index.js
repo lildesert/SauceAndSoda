@@ -1,24 +1,13 @@
 import React, { Component } from 'react'
+import { graphql } from 'gatsby'
+import { object } from 'prop-types'
+
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import styled from 'styled-components'
-import Link from 'gatsby-link'
 import CardList from '../components/cardList'
 import Card from '../components/card'
+import Pagination from '../components/pagination'
 import theme from '../utils/theme'
-
-const NavLinkContainer = styled.div`
-  display: flex;
-  justify-content: center;
-`
-
-const NavLink = props => {
-  if (!props.test) {
-    return <Link to={props.url}>{props.text}</Link>
-  } else {
-    return <span>{props.text}</span>
-  }
-}
 
 class IndexPage extends Component {
   constructor (props) {
@@ -32,8 +21,6 @@ class IndexPage extends Component {
     window.addEventListener('resize', this.handleWindowSizeChange)
   }
 
-  // make sure to remove the listener
-  // when the component is not mounted anymore
   componentWillUnmount () {
     window.removeEventListener('resize', this.handleWindowSizeChange)
   }
@@ -43,37 +30,75 @@ class IndexPage extends Component {
   };
 
   render () {
-    const { group, index, first, last, pageCount } = this.props.pageContext
-    const previousUrl = index - 1 === 1 ? '' : (index - 1).toString()
-    const nextUrl = (index + 1).toString()
-    const featuredPost = group[0].node
+    const {
+      data,
+      pageContext
+    } = this.props
+    const posts = data.allMarkdownRemark.edges
+    const featuredPost = posts[0].node
+    const { currentPage } = pageContext
+    const isFirstPage = currentPage === 1
     const isMobile = window.innerWidth < parseInt(theme.screen.tablet)
 
     return (
       <Layout>
         <SEO title="Accueil" keywords={['cocktail', 'sauce', 'bbq',
           'soda', 'sauceandsoda', 'barbecue', 'recette']} />
-        {first && !isMobile ? (
+        {isFirstPage && !isMobile ? (
           <CardList>
             <Card {...featuredPost} featured='true' />
-            {group.slice(1).map(({ node: post }) => (
+            {posts.slice(1).map(({ node: post }) => (
               <Card key={post.id} {...post} />
             ))}
           </CardList>
         ) : (
           <CardList>
-            {group.map(({ node: post }) => (
+            {posts.map(({ node: post }) => (
               <Card key={post.id} {...post} />
             ))}
           </CardList>
         )}
-        <NavLinkContainer>
-          <NavLink test={first} url={previousUrl} text="Previous Page" />
-          <NavLink test={last} url={nextUrl} text="Next Page" />
-        </NavLinkContainer>
+        <Pagination context={pageContext} />
       </Layout>
     )
   }
 }
+
+IndexPage.propTypes = {
+  data: object.isRequired,
+}
+
+export const query = graphql`
+  query($skip: Int!, $limit: Int!) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: $limit
+      skip: $skip
+      ) {
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: "DD MMMM, YYYY", locale: "fr")
+            category
+            coverImage {
+              publicURL
+              childImageSharp {
+                fluid(maxWidth: 800) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+          fields {
+            slug
+          }
+          excerpt
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage

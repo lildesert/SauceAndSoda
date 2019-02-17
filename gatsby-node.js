@@ -17,40 +17,26 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   return new Promise((resolve, reject) => {
-    const categoryTemplate = path.resolve('./src/templates/category.js')
     resolve(
       graphql(`
       {
-        posts: allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
-          totalCount
+        allMarkdownRemark(
+          sort: {fields: [frontmatter___date], order: DESC}
+          ) {
           edges {
             node {
               id
               frontmatter {
-                title
                 date(formatString: "DD MMMM, YYYY", locale: "fr")
                 category
-                coverImage {
-                  publicURL
-                  childImageSharp {
-                    sizes(maxWidth: 800) {
-                      base64
-                      aspectRatio
-                      src
-                      srcSet
-                      sizes
-                    }
-                  }
-                }
               }
               fields {
                 slug
               }
-              excerpt
             }
           }
         }
-      }   
+      }
         `
       ).then(result => {
         if (result.errors) {
@@ -58,18 +44,42 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors)
         }
 
-        createPaginatedPages({
-          edges: result.data.posts.edges,
-          createPage: createPage,
-          pageTemplate: 'src/templates/index.js',
-          pageLength: 7,
-          pathPrefix: '',
-          context: {},
+        const posts = result.data.allMarkdownRemark.edges
+        const postsPerFirstPage = 7
+        const postsPerPage = 6
+        const numPages = Math.ceil(
+          posts.slice(postsPerFirstPage).length / postsPerPage
+        )
+
+        // Create main home page
+        createPage({
+          path: `/`,
+          component: path.resolve(`./src/templates/index.js`),
+          context: {
+            limit: postsPerFirstPage,
+            skip: 0,
+            numPages: numPages + 1,
+            currentPage: 1,
+          },
         })
 
-        // Create category list
+        // Create additional pagination on home page if needed
+        Array.from({ length: numPages }).forEach((_, i) => {
+          createPage({
+            path: `/${ i + 2 }/`,
+            component: path.resolve(`./src/templates/index.js`),
+            context: {
+              limit: postsPerPage,
+              skip: i * postsPerPage + postsPerFirstPage,
+              numPages: numPages + 1,
+              currentPage: i + 2,
+            },
+          })
+        })
+
+        // Create category set
         const categorySet = new Set()
-        result.data.posts.edges.forEach(edge => {
+        posts.forEach(edge => {
           const {
             node: {
               frontmatter: { category }
@@ -82,10 +92,11 @@ exports.createPages = ({ graphql, actions }) => {
         })
 
         // Create category pages
+        const categoryTemplate = path.resolve('./src/templates/category.js')
         const categoryList = Array.from(categorySet)
         categoryList.forEach(category => {
           createPage({
-            // convert to kebab-case
+          // convert to kebab-case
             path: `/category/${ category.replace(/([a-z])([A-Z])/g, '$1-$2').replace(/\s+/g, '-').toLowerCase() }/`,
             component: categoryTemplate,
             context: {
@@ -95,13 +106,13 @@ exports.createPages = ({ graphql, actions }) => {
         })
 
         // Create blog posts
-        result.data.posts.edges.forEach(({ node }) => {
+        posts.forEach(({ node }) => {
           createPage({
             path: node.fields.slug,
             component: path.resolve(`./src/templates/blog-post.js`),
             context: {
-              // Data passed to context is available
-              // in page queries as GraphQL variables.
+            // Data passed to context is available
+            // in page queries as GraphQL variables.
               slug: node.fields.slug,
             },
           })
