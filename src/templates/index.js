@@ -10,6 +10,18 @@ import Pagination from '../components/pagination'
 import theme from '../utils/theme'
 
 class IndexPage extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      isMobile: null
+    }
+  }
+
+  componentDidMount () {
+    this.setState({ isMobile: typeof window !== 'undefined' &&
+    window.innerWidth < parseInt(theme.screen.tablet) })
+  }
+
   render () {
     const {
       data,
@@ -19,14 +31,12 @@ class IndexPage extends Component {
     const featuredPost = posts[0].node
     const { currentPage } = pageContext
     const isFirstPage = currentPage === 1
-    const isMobile = typeof window !== 'undefined' &&
-    window.innerWidth < parseInt(theme.screen.tablet)
 
     return (
       <Layout>
         <SEO title="Accueil" keywords={['cocktail', 'sauce', 'bbq',
           'soda', 'sauceandsoda', 'barbecue', 'recette']} />
-        {isFirstPage && !isMobile ? (
+        {isFirstPage && !this.state.isMobile ? (
           <CardList>
             <Card {...featuredPost} featured='true' />
             {posts.slice(1).map(({ node: post }) => (
