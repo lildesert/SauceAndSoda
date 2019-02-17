@@ -34,7 +34,8 @@ const Overlay = styled.div`
 
 const Title = styled.h2`
   text-transform: capitalize;
-  margin: 1rem .5rem .5rem;
+  margin: ${ props => (props.featured ? '3rem 0 1.5rem' : '1rem .5rem .5rem') };
+  font-size: ${ props => (props.featured ? '2rem' : '') };
 `
 
 const Meta = styled.div`
@@ -56,7 +57,7 @@ const Category = styled.span`
 `
 
 const Excerpt = styled.p`
-  margin: 0 .5rem 1rem;
+  margin: ${ props => (props.featured ? '0 2rem' : '0 .5rem 1rem') };
   line-height: 1.6;
 `
 
@@ -67,7 +68,7 @@ const MoreArrow = styled(StyledIcon)`
 `
 
 const MoreLink = styled(Link)`
-  margin: 0 .5rem;
+  margin: ${ props => (props.featured ? '2rem 0 0' : '0 .5rem') };
   display: inline-block;
   &:hover ${ MoreArrow } {
     left: 2px;
@@ -78,29 +79,53 @@ const MoreLinkSpan = styled.span`
   margin-right: 8px;
 `
 
+const Container = styled.div`
+  &.columns {
+    margin: 0;
+
+    @media (min-width: ${ ({ theme }) => theme.screen.tablet }) {
+      flex-direction: row-reverse;
+      display: flex;
+    }
+  }
+`
+
+const ImagePanel = styled.div`
+  &.column {
+    padding: 0;
+  }
+`
+
 const Card = ({ fields, frontmatter, excerpt, ...props }) => {
   return (
-    <Post className='column is-one-third'>
-      <Thumbnail to={`/${ fields.slug }/`}>
-        <Img sizes={frontmatter.coverImage.childImageSharp.sizes} backgroundColor={'#eeeeee'} />
-        <Overlay />
-      </Thumbnail>
-      <Meta className='is-lowercase'>
-        <span>{frontmatter.date}</span>
-        <Category>{frontmatter.category}</Category>
-      </Meta>
-      <Link to={`/${ fields.slug }/`}>
-        <Title>{frontmatter.title}</Title>
-      </Link>
-      <Excerpt
-        dangerouslySetInnerHTML={{
-          __html: excerpt,
-        }}
-      />
-      <MoreLink to={`/${ fields.slug }/`}>
-        <MoreLinkSpan>lire</MoreLinkSpan>
-        <MoreArrow nav="true" icon='long-arrow-alt-right' />
-      </MoreLink>
+    <Post className={props.featured ? 'column is-full' : 'column is-one-third'}>
+      <Container className={props.featured ? 'card is-vcentered columns' : '' }>
+        <ImagePanel className={props.featured ? 'column is-7' : '' }>
+          <Thumbnail to={`/${ fields.slug }/`}>
+            <Img sizes={frontmatter.coverImage.childImageSharp.sizes}
+              backgroundColor={'#eeeeee'} />
+            <Overlay />
+          </Thumbnail>
+        </ImagePanel>
+        <div className={props.featured ? 'column is-5 has-text-centered' : '' }>
+          <Meta className='is-lowercase'>
+            <span>{frontmatter.date}</span>
+            <Category>{frontmatter.category}</Category>
+          </Meta>
+          <Link to={`/${ fields.slug }/`}>
+            <Title featured={props.featured}>{frontmatter.title}</Title>
+          </Link>
+          <Excerpt featured={props.featured}
+            dangerouslySetInnerHTML={{
+              __html: excerpt,
+            }}
+          />
+          <MoreLink featured={props.featured} to={`/${ fields.slug }/`}>
+            <MoreLinkSpan>lire</MoreLinkSpan>
+            <MoreArrow nav="true" icon='long-arrow-alt-right' />
+          </MoreLink>
+        </div>
+      </Container>
     </Post>
   )
 }

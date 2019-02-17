@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
-import Tile from '../components/tile'
 import CardList from '../components/cardList'
 import Card from '../components/card'
+import theme from '../utils/theme'
+
+const NavLinkContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
 
 const NavLink = props => {
   if (!props.test) {
@@ -15,53 +20,60 @@ const NavLink = props => {
   }
 }
 
-const Container = styled.div`
-  &.columns {
-    margin-top: 3rem;
+class IndexPage extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      width: window.innerWidth,
+    }
   }
-`
 
-const NavLinkContainer = styled.div`
-  display: inline-block;
-  margin-right: 8px;
-`
+  componentWillMount () {
+    window.addEventListener('resize', this.handleWindowSizeChange)
+  }
 
-const IndexPage = ({ pageContext }) => {
-  const { group, index, first, last, pageCount } = pageContext
-  const previousUrl = index - 1 === 1 ? '' : (index - 1).toString()
-  const nextUrl = (index + 1).toString()
-  return (
-    <Layout>
-      <SEO title="Accueil" keywords={['cocktail', 'sauce', 'bbq',
-        'soda', 'sauceandsoda', 'barbecue', 'recette']} />
-      <Container className='tile is-ancestor'>
-        {group.length === 6 ? (
-          group.reduce(function (result, value, index, array) {
-            if (index % 2 === 0) {
-              result.push(array.slice(index, index + 2))
-            }
-            return result
-          }, [])
-            .map((posts, index) => (
-              <Tile key={index} isEven={index % 2 === 0} posts={posts} />
-            ))
-        )
-          : (
-            <CardList>
-              { group.map(({ node: post }) => (
-                <Card key={post.id} {...post} />
-              ))}
-            </CardList>)
-        }
-      </Container>
-      <NavLinkContainer className="previousLink">
-        <NavLink test={first} url={previousUrl} text="Previous Page" />
-      </NavLinkContainer>
-      <NavLinkContainer className="nextLink">
-        <NavLink test={last} url={nextUrl} text="Next Page" />
-      </NavLinkContainer>
-    </Layout>
-  )
+  // make sure to remove the listener
+  // when the component is not mounted anymore
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.handleWindowSizeChange)
+  }
+
+  handleWindowSizeChange = () => {
+    this.setState({ width: window.innerWidth })
+  };
+
+  render () {
+    const { group, index, first, last, pageCount } = this.props.pageContext
+    const previousUrl = index - 1 === 1 ? '' : (index - 1).toString()
+    const nextUrl = (index + 1).toString()
+    const featuredPost = group[0].node
+    const isMobile = window.innerWidth < parseInt(theme.screen.tablet)
+
+    return (
+      <Layout>
+        <SEO title="Accueil" keywords={['cocktail', 'sauce', 'bbq',
+          'soda', 'sauceandsoda', 'barbecue', 'recette']} />
+        {first && !isMobile ? (
+          <CardList>
+            <Card {...featuredPost} featured='true' />
+            {group.slice(1).map(({ node: post }) => (
+              <Card key={post.id} {...post} />
+            ))}
+          </CardList>
+        ) : (
+          <CardList>
+            {group.map(({ node: post }) => (
+              <Card key={post.id} {...post} />
+            ))}
+          </CardList>
+        )}
+        <NavLinkContainer>
+          <NavLink test={first} url={previousUrl} text="Previous Page" />
+          <NavLink test={last} url={nextUrl} text="Next Page" />
+        </NavLinkContainer>
+      </Layout>
+    )
+  }
 }
 
 export default IndexPage

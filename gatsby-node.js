@@ -25,6 +25,7 @@ exports.createPages = ({ graphql, actions }) => {
           totalCount
           edges {
             node {
+              id
               frontmatter {
                 title
                 date(formatString: "DD MMMM, YYYY", locale: "fr")
@@ -61,7 +62,7 @@ exports.createPages = ({ graphql, actions }) => {
           edges: result.data.posts.edges,
           createPage: createPage,
           pageTemplate: 'src/templates/index.js',
-          pageLength: 6,
+          pageLength: 7,
           pathPrefix: '',
           context: {},
         })
