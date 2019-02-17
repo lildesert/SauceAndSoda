@@ -7,7 +7,7 @@ const theme = {
     whiteTer: 'hsl(0, 0%, 100%)',
     body: 'hsl(0, 0%, 100%)',
     greyLight: 'hsl(0, 0%, 71%)',
-    primary: '#f36e5c',
+    primary: '#FF6F61',
     link: 'hsl(0, 0%, 100%)',
     blackTer: 'hsl(0, 0%, 14%)',
     muted: '#a2aeb8'
