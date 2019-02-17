@@ -10,25 +10,6 @@ import Pagination from '../components/pagination'
 import theme from '../utils/theme'
 
 class IndexPage extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      width: window.innerWidth,
-    }
-  }
-
-  componentWillMount () {
-    window.addEventListener('resize', this.handleWindowSizeChange)
-  }
-
-  componentWillUnmount () {
-    window.removeEventListener('resize', this.handleWindowSizeChange)
-  }
-
-  handleWindowSizeChange = () => {
-    this.setState({ width: window.innerWidth })
-  };
-
   render () {
     const {
       data,
@@ -38,7 +19,8 @@ class IndexPage extends Component {
     const featuredPost = posts[0].node
     const { currentPage } = pageContext
     const isFirstPage = currentPage === 1
-    const isMobile = window.innerWidth < parseInt(theme.screen.tablet)
+    const isMobile = typeof window !== 'undefined' &&
+    window.innerWidth < parseInt(theme.screen.tablet)
 
     return (
       <Layout>
