@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import { StyledIcon } from '../components/icon'
 
 const Name = styled.h3`
-  margin-bottom: .5rem;
+  margin-bottom: 1rem;
 `
 
 const AboutText = styled.div`
-  margin-bottom: 8px;
+  margin-bottom: 1rem;
 `
 
 const Heart = styled(StyledIcon)`
