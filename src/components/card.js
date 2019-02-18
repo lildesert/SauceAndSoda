@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import { StyledIcon } from './icon'
+import BlogPostMeta from './blogPostMeta'
 
 const Post = styled.div`
   margin-bottom: 1rem;
@@ -38,22 +39,8 @@ const Title = styled.h2`
   font-size: ${ props => (props.featured ? '2rem' : '') };
 `
 
-const Meta = styled.div`
+const Meta = styled(BlogPostMeta)`
   margin: 1rem .5rem 0;
-  font-weight: 300;
-`
-
-const Category = styled.span`
-  :before {
-    display: inline-block;
-    position: relative;
-    bottom: .3rem;
-    margin: 0 .7rem 0 1rem;
-    content: "";
-    height: 1px;
-    width: 4.0rem;
-    background-color: #8b8b8b;
-  }
 `
 
 const Excerpt = styled.p`
@@ -108,10 +95,7 @@ const Card = ({ ...props }) => {
           </Thumbnail>
         </ImagePanel>
         <div className={props.featured ? 'column is-5 has-text-centered' : '' }>
-          <Meta className='is-lowercase'>
-            <span>{props.createdAt}</span>
-            <Category>{props.category.name}</Category>
-          </Meta>
+          <Meta {...props} />
           <Link to={`/${ props.slug }/`}>
             <Title featured={props.featured}>{props.title}</Title>
           </Link>

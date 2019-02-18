@@ -4,6 +4,7 @@ import Img from 'gatsby-image'
 import styled from 'styled-components'
 import Layout from '../components/layout'
 import PageBody from '../components/pageBody'
+import BlogPostMeta from '../components/blogPostMeta'
 
 const Subtitle = styled.h3`
   max-width: 560px;
@@ -14,14 +15,19 @@ const Thumbnail = styled(Img)`
   margin-bottom: 1.5rem;
 `
 
+const Meta = styled(BlogPostMeta)`
+  margin-bottom: 2rem;
+`
+
 export default ({ data }) => {
   const post = data.contentfulBlogPost
   return (
     <Layout>
       <div className='columns'>
         <div className='column is-8 is-offset-2'>
-          <h1 className='title'>{post.title}</h1>
-          <Subtitle className='subtitle is-italic'>{post.author.name} - {post.createdAt} - {post.category.name}</Subtitle>
+          <h1>{post.title}</h1>
+          <span className='has-text-weight-bold'>{post.author.name}</span>
+          <Meta {...post} />
           <Thumbnail fluid={post.coverImage.fluid} backgroundColor={'#eeeeee'} />
           <PageBody body={post.content.childMarkdownRemark.html} />
         </div>

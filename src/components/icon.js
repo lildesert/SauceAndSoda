@@ -30,8 +30,6 @@ library.add(
   faHeart
 )
 
-console.log(library)
-
 const UnstyledIcon = props => <FontAwesomeIcon {...props} />
 
 export const StyledIcon = styled(UnstyledIcon)``
