@@ -41,7 +41,6 @@ export const query = graphql`
       slug
       createdAt(formatString: "DD MMMM, YYYY", locale: "fr")
       title
-      subtitle
       category {
         name
       }
