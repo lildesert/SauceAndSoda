@@ -117,7 +117,7 @@ const Card = ({ ...props }) => {
           </Link>
           <Excerpt featured={props.featured}
             dangerouslySetInnerHTML={{
-              __html: 'excerpt',
+              __html: props.content.childMarkdownRemark.excerpt,
             }}
           />
           <MoreLink featured={props.featured} to={`/${ props.slug }/`}>

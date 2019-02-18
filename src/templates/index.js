@@ -81,6 +81,11 @@ query ($skip: Int!, $limit: Int!) {
             ...GatsbyContentfulFluid
           }
         }
+        content {
+          childMarkdownRemark {
+            excerpt
+          }
+        }
       }
     }
   }

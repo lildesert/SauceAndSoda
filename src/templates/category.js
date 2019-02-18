@@ -66,6 +66,11 @@ query PostsByCategory($category: String) {
             ...GatsbyContentfulFluid
           }
         }
+        content {
+          childMarkdownRemark {
+            excerpt
+          }
+        }
       }
     }
   }
