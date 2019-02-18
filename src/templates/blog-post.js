@@ -15,15 +15,15 @@ const Thumbnail = styled(Img)`
 `
 
 export default ({ data }) => {
-  const post = data.markdownRemark
+  const post = data.contentfulBlogPost
   return (
     <Layout>
       <div className='columns'>
         <div className='column is-8 is-offset-2'>
-          <h1 className='title'>{post.frontmatter.title}</h1>
-          <Subtitle className='subtitle is-italic'>{post.frontmatter.subtitle}</Subtitle>
-          <Thumbnail sizes={post.frontmatter.coverImage.childImageSharp.sizes} backgroundColor={'#eeeeee'} />
-          <PageBody body={post.html} />
+          <h1 className='title'>{post.title}</h1>
+          <Subtitle className='subtitle is-italic'>{post.author.name} - {post.createdAt} - {post.category.name}</Subtitle>
+          <Thumbnail fluid={post.coverImage.fluid} backgroundColor={'#eeeeee'} />
+          <PageBody body={post.content.childMarkdownRemark.html} />
         </div>
       </div>
     </Layout>
@@ -31,22 +31,26 @@ export default ({ data }) => {
 }
 
 export const query = graphql`
-  query($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      frontmatter {
-        title
-        author
-        subtitle
-        date(formatString: "DD MMMM, YYYY", locale: "fr")
-        category
-        coverImage {
-          publicURL
-          childImageSharp {
-            sizes(maxWidth: 800) {
-              ...GatsbyImageSharpSizes
-            }
-          }
+  query ($slug: String!) {
+    contentfulBlogPost(slug: {eq: $slug}) {
+      content {
+        childMarkdownRemark {
+          html
+        }
+      }
+      slug
+      createdAt(formatString: "DD MMMM, YYYY", locale: "fr")
+      title
+      subtitle
+      category {
+        name
+      }
+      author {
+        name
+      }
+      coverImage {
+        fluid(maxWidth: 800) {
+          ...GatsbyContentfulFluid
         }
       }
     }

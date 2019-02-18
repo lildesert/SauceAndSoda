@@ -1,18 +1,4 @@
 const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
-const createPaginatedPages = require('gatsby-paginate')
-
-exports.onCreateNode = ({ node, getNode, actions }) => {
-  const { createNodeField } = actions
-  if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode })
-    createNodeField({
-      node,
-      name: `slug`,
-      value: slug,
-    })
-  }
-}
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -20,23 +6,19 @@ exports.createPages = ({ graphql, actions }) => {
     resolve(
       graphql(`
       {
-        allMarkdownRemark(
-          sort: {fields: [frontmatter___date], order: DESC}
-          ) {
+        allContentfulBlogPost {
           edges {
             node {
-              id
-              frontmatter {
-                date(formatString: "DD MMMM, YYYY", locale: "fr")
-                category
+              slug
+              category {
+                id
+                name
               }
-              fields {
-                slug
-              }
+              createdAt(formatString: "DD MMMM, YYYY", locale: "fr")
             }
           }
         }
-      }
+      }      
         `
       ).then(result => {
         if (result.errors) {
@@ -44,7 +26,7 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors)
         }
 
-        const posts = result.data.allMarkdownRemark.edges
+        const posts = result.data.allContentfulBlogPost.edges
         const postsPerFirstPage = 7
         const postsPerPage = 6
         const numPages = Math.ceil(
@@ -82,12 +64,12 @@ exports.createPages = ({ graphql, actions }) => {
         posts.forEach(edge => {
           const {
             node: {
-              frontmatter: { category }
+              category: { name }
             }
           } = edge
 
-          if (category && category !== null) {
-            categorySet.add(category)
+          if (name && name !== null) {
+            categorySet.add(name)
           }
         })
 
@@ -108,12 +90,12 @@ exports.createPages = ({ graphql, actions }) => {
         // Create blog posts
         posts.forEach(({ node }) => {
           createPage({
-            path: node.fields.slug,
+            path: node.slug,
             component: path.resolve(`./src/templates/blog-post.js`),
             context: {
             // Data passed to context is available
             // in page queries as GraphQL variables.
-              slug: node.fields.slug,
+              slug: node.slug,
             },
           })
         })

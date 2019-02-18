@@ -27,7 +27,7 @@ class IndexPage extends Component {
       data,
       pageContext
     } = this.props
-    const posts = data.allMarkdownRemark.edges
+    const posts = data.allContentfulBlogPost.edges
     const featuredPost = posts[0].node
     const { currentPage } = pageContext
     const isFirstPage = currentPage === 1
@@ -61,36 +61,30 @@ IndexPage.propTypes = {
 }
 
 export const query = graphql`
-  query($skip: Int!, $limit: Int!) {
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      limit: $limit
-      skip: $skip
-      ) {
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            date(formatString: "DD MMMM, YYYY", locale: "fr")
-            category
-            coverImage {
-              publicURL
-              childImageSharp {
-                fluid(maxWidth: 800) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
+query ($skip: Int!, $limit: Int!) {
+  allContentfulBlogPost(
+    sort: {fields: [createdAt], order: DESC},
+    limit: $limit,
+    skip: $skip
+    ) {
+    edges {
+      node {
+        id
+        slug
+        createdAt(formatString: "DD MMMM, YYYY", locale: "fr")
+        title
+        category {
+          name
+        }
+        coverImage {
+          fluid(maxWidth: 800) {
+            ...GatsbyContentfulFluid
           }
-          fields {
-            slug
-          }
-          excerpt
         }
       }
     }
   }
+}
 `
 
 export default IndexPage

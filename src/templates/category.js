@@ -21,7 +21,7 @@ const CategoryTemplate = props => {
   const {
     pageContext: { category },
     data: {
-      allMarkdownRemark: { edges },
+      allContentfulBlogPost: { edges },
     }
   } = props
 
@@ -47,36 +47,29 @@ CategoryTemplate.propTypes = {
 }
 
 export const categoryQuery = graphql`
-  query PostsByCategory($category: String) {
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { category: { eq: $category } } }
+query PostsByCategory($category: String) {
+  allContentfulBlogPost(
+    sort: {fields: [createdAt], order: DESC},
+    filter: {category: {name: {eq: $category}}}
     ) {
-      totalCount
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            date(formatString: "DD MMMM, YYYY", locale: "fr")
-            category
-            coverImage {
-              publicURL
-              childImageSharp {
-                fluid(maxWidth: 800) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
+    edges {
+      node {
+        id
+        slug
+        createdAt(formatString: "DD MMMM, YYYY", locale: "fr")
+        title
+        category {
+          name
+        }
+        coverImage {
+          fluid(maxWidth: 800) {
+            ...GatsbyContentfulFluid
           }
-          fields {
-            slug
-          }
-          excerpt
         }
       }
     }
   }
+}
 `
 
 export default CategoryTemplate

@@ -96,31 +96,31 @@ const ImagePanel = styled.div`
   }
 `
 
-const Card = ({ fields, frontmatter, excerpt, ...props }) => {
+const Card = ({ ...props }) => {
   return (
     <Post className={props.featured ? 'column is-full' : 'column is-one-third'}>
       <Container className={props.featured ? 'card is-vcentered columns' : '' }>
         <ImagePanel className={props.featured ? 'column is-7' : '' }>
-          <Thumbnail to={`/${ fields.slug }/`}>
-            <Img fluid={frontmatter.coverImage.childImageSharp.fluid}
+          <Thumbnail to={`/${ props.slug }/`}>
+            <Img fluid={props.coverImage.fluid}
               backgroundColor={'#eeeeee'} />
             <Overlay />
           </Thumbnail>
         </ImagePanel>
         <div className={props.featured ? 'column is-5 has-text-centered' : '' }>
           <Meta className='is-lowercase'>
-            <span>{frontmatter.date}</span>
-            <Category>{frontmatter.category}</Category>
+            <span>{props.createdAt}</span>
+            <Category>{props.category.name}</Category>
           </Meta>
-          <Link to={`/${ fields.slug }/`}>
-            <Title featured={props.featured}>{frontmatter.title}</Title>
+          <Link to={`/${ props.slug }/`}>
+            <Title featured={props.featured}>{props.title}</Title>
           </Link>
           <Excerpt featured={props.featured}
             dangerouslySetInnerHTML={{
-              __html: excerpt,
+              __html: 'excerpt',
             }}
           />
-          <MoreLink featured={props.featured} to={`/${ fields.slug }/`}>
+          <MoreLink featured={props.featured} to={`/${ props.slug }/`}>
             <MoreLinkSpan>lire</MoreLinkSpan>
             <MoreArrow nav="true" icon='long-arrow-alt-right' />
           </MoreLink>
