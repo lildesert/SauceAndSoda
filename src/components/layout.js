@@ -1,4 +1,5 @@
 import React from 'react'
+import '@fortawesome/fontawesome-svg-core/styles.css'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 import styled, { ThemeProvider } from 'styled-components'
