@@ -59,9 +59,9 @@ class Header extends Component {
                 <Link to="/" activeClassName="is-active" className="navbar-item">
                   Accueil
                 </Link>
-                <Link to="/category/bbq" activeClassName="is-active" className="navbar-item">
+                {/* <Link to="/category/bbq" activeClassName="is-active" className="navbar-item">
                   BBQ
-                </Link>
+                </Link> */}
                 <Link to="/category/cocktail" activeClassName="is-active" className="navbar-item">
                   Cocktails
                 </Link>
