@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
 import Layout from '../components/layout'
+import SEO from '../components/seo'
 import PageBody from '../components/pageBody'
 import BlogPostMeta from '../components/blogPostMeta'
 
@@ -18,6 +19,8 @@ export default ({ data }) => {
   const post = data.contentfulBlogPost
   return (
     <Layout>
+      <SEO title={post.title} keywords={[post.category.name,
+        post.author.name, 'sauceandsoda', 'recette']} />
       <div className='columns'>
         <div className='column is-8 is-offset-2'>
           <h1>{post.title}</h1>
