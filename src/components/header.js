@@ -75,11 +75,9 @@ class Header extends Component {
               <div className="navbar-end">
                 <span className="navbar-item">
                   <SocialMediaLabel>nous suivre :</SocialMediaLabel>
-                  <Link to="/">
-                    <span className="icon">
-                      <Icon nav="true" icon={['fab', 'twitter']} />
-                    </span>
-                  </Link>
+                  <a href="https://www.instagram.com/sauceandsoda_fr/" target="_blank" rel="noopener noreferrer">
+                    <Icon nav="true" icon={['fab', 'instagram']} />
+                  </a>
                 </span>
               </div>
             </div>

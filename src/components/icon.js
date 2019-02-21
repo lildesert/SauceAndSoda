@@ -5,12 +5,7 @@ import { any, string } from 'prop-types'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-  faGithub,
-  faInstagram,
-  faLinkedin,
-  faMediumM,
-  faTwitter,
-  faYoutube
+  faInstagram
 } from '@fortawesome/free-brands-svg-icons'
 import { faSpinner,
   faLongArrowAltRight,
@@ -20,12 +15,7 @@ import { faSpinner,
 // By setting things up like this react-fontawesome knows of the icons
 // I am also only using these icons from the libraries so less overhead.
 library.add(
-  faGithub,
   faInstagram,
-  faLinkedin,
-  faMediumM,
-  faTwitter,
-  faYoutube,
   faLongArrowAltRight,
   faHeart
 )
