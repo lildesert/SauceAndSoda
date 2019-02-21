@@ -10,7 +10,6 @@ const Body = styled.div`
     font-weight: 600;
     line-height: 1.25;
     margin: 0 0 1rem 0;
-    text-transform: capitalize;
   }
 
   h1 {

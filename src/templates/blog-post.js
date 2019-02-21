@@ -6,11 +6,6 @@ import Layout from '../components/layout'
 import PageBody from '../components/pageBody'
 import BlogPostMeta from '../components/blogPostMeta'
 
-const Subtitle = styled.h3`
-  max-width: 560px;
-  font-weight: 300;
-`
-
 const Thumbnail = styled(Img)`
   margin-bottom: 1.5rem;
 `
