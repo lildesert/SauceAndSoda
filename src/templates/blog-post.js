@@ -4,7 +4,7 @@ import Img from 'gatsby-image'
 import styled from 'styled-components'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import PageBody from '../components/pageBody'
+import BlogPostBody from '../components/blogPostBody'
 import BlogPostMeta from '../components/blogPostMeta'
 
 const Thumbnail = styled(Img)`
@@ -27,7 +27,7 @@ export default ({ data }) => {
           <span className='has-text-weight-bold'>{post.author.name}</span>
           <Meta {...post} />
           <Thumbnail fluid={post.coverImage.fluid} backgroundColor={'#eeeeee'} />
-          <PageBody body={post.content.childMarkdownRemark.html} />
+          <BlogPostBody body={post.content.childMarkdownRemark.html} />
         </div>
       </div>
     </Layout>
