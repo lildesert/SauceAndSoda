@@ -28,6 +28,10 @@ body {
   box-shadow: none;
 }
 
+.title {
+  font-weight: 400;
+}
+
 @media(min-width: $tablet) {
   .layout-border {
     content: " ";

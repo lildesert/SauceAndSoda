@@ -8,12 +8,14 @@ import SEO from '../components/seo'
 import CardList from '../components/cardList'
 import Card from '../components/card'
 
-const CategoryLabel = styled.span`
-  font-weight: 300;
+const CategoryLabel = styled.h4`
+  display: inline-block;
+  margin-right: 8px;
   color: ${ ({ theme }) => theme.colors.muted };
 `
 
-const CategoryName = styled.span`
+const CategoryName = styled.h4`
+display: inline-block;
   color: ${ ({ theme }) => theme.colors.primary };
 `
 

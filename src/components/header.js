@@ -10,7 +10,13 @@ const Menu = styled.div`
   &.navbar-start {
     flex-grow: 1; 
     justify-content: center;
+    align-items: center;
   }
+`
+
+const MenuLinkTitle = styled.h4`
+  margin-bottom: 0;
+  font-weight: 500;
 `
 
 const Logo = styled.img`
@@ -56,21 +62,26 @@ class Header extends Component {
             </div>
             <div id="navbarMenuHeroA" className={'navbar-menu' + (this.state.showMenu ? ' is-active' : '')}>
               <Menu className="navbar-start">
-                <Link to="/" activeClassName="is-active" className="navbar-item">
+                <MenuLinkTitle>
+                  <Link to="/" activeClassName="is-active" className="navbar-item">
                   Accueil
-                </Link>
-                {/* <Link to="/category/bbq" activeClassName="is-active" className="navbar-item">
-                  BBQ
-                </Link> */}
-                <Link to="/category/cocktail" activeClassName="is-active" className="navbar-item">
+                  </Link>
+                </MenuLinkTitle>
+                <MenuLinkTitle>
+                  <Link to="/category/cocktail" activeClassName="is-active" className="navbar-item">
                   Cocktails
-                </Link>
-                <Link to="/category/sauce" activeClassName="is-active" className="navbar-item">
+                  </Link>
+                </MenuLinkTitle>
+                <MenuLinkTitle>
+                  <Link to="/category/sauce" activeClassName="is-active" className="navbar-item">
                   Sauces
-                </Link>
-                <Link to="/about" activeClassName="is-active" className="navbar-item">
+                  </Link>
+                </MenuLinkTitle>
+                <MenuLinkTitle>
+                  <Link to="/about" activeClassName="is-active" className="navbar-item">
                   A propos
-                </Link>
+                  </Link>
+                </MenuLinkTitle>
               </Menu>
               <div className="navbar-end">
                 <span className="navbar-item">

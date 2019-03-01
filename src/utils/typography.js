@@ -7,14 +7,15 @@ const typography = new Typography({
   googleFonts: [
     {
       name: 'Montserrat',
-      styles: ['400'],
+      styles: ['400', '500'],
     },
     {
       name: 'Lato',
-      styles: ['300', '400', '500', '600'],
+      styles: ['300', '400', '700'],
     },
   ],
   headerFontFamily: ['Montserrat', 'sans-serif'],
+  headerWeight: 400,
   bodyFontFamily: ['Lato', 'sans-serif'],
   bodyWeight: 400,
   boldWeight: 700,
