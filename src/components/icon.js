@@ -5,7 +5,8 @@ import { any, string } from 'prop-types'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-  faInstagram
+  faInstagram,
+  faTwitter
 } from '@fortawesome/free-brands-svg-icons'
 import { faSpinner,
   faLongArrowAltRight,
@@ -16,6 +17,7 @@ import { faSpinner,
 // I am also only using these icons from the libraries so less overhead.
 library.add(
   faInstagram,
+  faTwitter,
   faLongArrowAltRight,
   faHeart
 )

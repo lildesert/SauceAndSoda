@@ -5,12 +5,11 @@ import Icon from './icon'
 import logo from '../images/sauceandsoda-black-transparent.png' // logomakr.com/8KQU24
 
 const Menu = styled.div`
-  padding: 24px 0;
   font-size: 1.1rem;
-  &.navbar-start {
-    flex-grow: 1; 
-    justify-content: center;
-    align-items: center;
+  @media(max-width: ${ ({ theme }) => theme.screen.desktop }){
+    &.navbar-menu{
+      padding: 0.5rem;
+    }
   }
 `
 
@@ -26,8 +25,10 @@ const Logo = styled.img`
   }
 `
 
-const SocialMediaLabel = styled.span`
-  margin-right: 5px;
+const SocialLink = styled.a`
+  :first-child{
+    margin-right: 16px;
+  }
 `
 
 class Header extends Component {
@@ -60,38 +61,23 @@ class Header extends Component {
                 <span></span>
               </div>
             </div>
-            <div id="navbarMenuHeroA" className={'navbar-menu' + (this.state.showMenu ? ' is-active' : '')}>
-              <Menu className="navbar-start">
-                <MenuLinkTitle>
-                  <Link to="/" activeClassName="is-active" className="navbar-item">
-                  Accueil
-                  </Link>
-                </MenuLinkTitle>
-                <MenuLinkTitle>
-                  <Link to="/category/cocktail" activeClassName="is-active" className="navbar-item">
-                  Cocktails
-                  </Link>
-                </MenuLinkTitle>
-                <MenuLinkTitle>
-                  <Link to="/category/sauce" activeClassName="is-active" className="navbar-item">
-                  Sauces
-                  </Link>
-                </MenuLinkTitle>
-                <MenuLinkTitle>
-                  <Link to="/about" activeClassName="is-active" className="navbar-item">
+            <Menu id="navbarMenuHeroA" className={'navbar-menu' + (this.state.showMenu ? ' is-active' : '')}>
+              <div className="navbar-end">
+                <MenuLinkTitle className="navbar-item">
+                  <Link to="/about" activeClassName="is-active">
                   A propos
                   </Link>
                 </MenuLinkTitle>
-              </Menu>
-              <div className="navbar-end">
                 <span className="navbar-item">
-                  <SocialMediaLabel>nous suivre :</SocialMediaLabel>
-                  <a href="https://www.instagram.com/sauceandsoda_fr/" target="_blank" rel="noopener noreferrer">
+                  <SocialLink href="https://www.instagram.com/sauceandsoda_fr/" target="_blank" rel="noopener noreferrer">
                     <Icon nav="true" icon={['fab', 'instagram']} />
-                  </a>
+                  </SocialLink>
+                  <SocialLink href="https://twitter.com/SauceAndSoda" target="_blank" rel="noopener noreferrer">
+                    <Icon nav="true" icon={['fab', 'twitter']} />
+                  </SocialLink>
                 </span>
               </div>
-            </div>
+            </Menu>
           </div>
         </nav>
       </div>
