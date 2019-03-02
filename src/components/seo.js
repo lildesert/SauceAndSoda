@@ -2,14 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
+import logo from '../images/sauceandsoda_insta.png'
 
-function SEO ({ description, lang, meta, keywords, title }) {
+function SEO ({ description, lang, meta, keywords, title, image }) {
   return (
     <StaticQuery
       query={detailsQuery}
       render={data => {
         const metaDescription =
           description || data.site.siteMetadata.description
+        const metaImage = image || logo
         return (
           <Helmet
             htmlAttributes={{
@@ -45,6 +47,14 @@ function SEO ({ description, lang, meta, keywords, title }) {
               {
                 name: 'twitter:title',
                 content: title,
+              },
+              {
+                name: 'twitter:image',
+                content: metaImage,
+              },
+              {
+                property: 'og:image',
+                content: metaImage,
               },
               {
                 name: 'twitter:description',

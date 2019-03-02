@@ -20,7 +20,8 @@ export default ({ data }) => {
   return (
     <Layout>
       <SEO title={post.title} keywords={[post.category.name,
-        post.author.name, 'sauceandsoda', 'recette']} />
+        post.author.name, 'sauceandsoda', 'recette']} image={'https:' + post.coverImage.fluid.src}
+      description={post.content.childMarkdownRemark.excerpt} />
       <div className='columns'>
         <div className='column is-8 is-offset-2'>
           <h1>{post.title}</h1>
@@ -40,6 +41,7 @@ export const query = graphql`
       content {
         childMarkdownRemark {
           html
+          excerpt
         }
       }
       slug
