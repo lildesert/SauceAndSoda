@@ -1,7 +1,7 @@
 @import "~bulma/sass/utilities/initial-variables.sass";
 @import "~bulma/sass/utilities/functions.sass";
 
-$primary: #FF6F61;
+$primary: #ff6f61;
 $black: $white;
 $white: hsl(0, 0, 9%);
 $grey-dark: $white-ter;
@@ -12,6 +12,8 @@ $navbar-item-hover-background-color: initial;
 $navbar-item-active-color: $primary;
 $navbar-item-hover-color: $primary;
 $link-hover: $primary;
+// Disable the fullhd breakpoint
+$fullhd-enabled: false;
 
 @import "~bulma/bulma.sass";
 
@@ -32,7 +34,7 @@ body {
   font-weight: 400;
 }
 
-@media(min-width: $tablet) {
+@media (min-width: $tablet) {
   .layout-border {
     content: " ";
     display: block;
