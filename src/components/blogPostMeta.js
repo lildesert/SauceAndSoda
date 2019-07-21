@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'gatsby'
 
-const Category = styled(Link)`
+const Category = styled.span`
   :before {
     display: inline-block;
     position: relative;
@@ -19,7 +18,7 @@ const BlogPostMeta = ({ ...props }) => {
   return (
     <div className={props.className + ' has-text-weight-light'}>
       <span>{props.createdAt}</span>
-      <Category to={'/category/' + props.category.name}>
+      <Category>
         {props.category.name}
       </Category>
     </div>
