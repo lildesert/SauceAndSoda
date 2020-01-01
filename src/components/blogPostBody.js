@@ -25,13 +25,16 @@ const Body = styled.div`
   p {
     line-height: 1.6;
     margin: 0 0 2em 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   a {
     transition: 0.2s;
-    color: ${ ({ theme }) => theme.colors.primary };
+    color: ${({ theme }) => theme.colors.primary};
     &:hover {
-      color: ${ ({ theme }) => theme.colors.link };
+      color: ${({ theme }) => theme.colors.link};
     }
   }
 
@@ -78,32 +81,34 @@ const Body = styled.div`
 
   hr {
     border-style: solid;
-    border-color: ${ ({ theme }) => theme.colors.muted };
+    border-color: ${({ theme }) => theme.colors.muted};
     margin: 0 0 2em 0;
   }
 
   blockquote {
     font-style: italic;
-    border-left: 4px solid ${ ({ theme }) => theme.colors.muted };
+    border-left: 4px solid ${({ theme }) => theme.colors.muted};
     padding: 0 0 0 0.5em;
   }
 
   pre {
     margin: 0 0 2em 0;
     border-radius: 2px;
-    background: ${ ({ theme }) => theme.colors.muted } !important;
+    background: ${({ theme }) => theme.colors.muted} !important;
     span {
       background: inherit !important;
+    }
+  }
+
+  @media (min-width: ${({ theme }) => theme.screen.desktop}) {
+    img {
+      width: 80%;
     }
   }
 `
 
 const PageBody = props => {
-  return (
-    <Body
-      dangerouslySetInnerHTML={{ __html: props.body }}
-    />
-  )
+  return <Body dangerouslySetInnerHTML={{ __html: props.body }} />
 }
 
 export default PageBody
