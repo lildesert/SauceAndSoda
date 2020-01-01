@@ -9,7 +9,7 @@ const Body = styled.div`
   h3 {
     font-weight: 500;
     line-height: 1.25;
-    margin: 0 0 1rem 0;
+    margin: 0 0 1rem;
   }
 
   h1 {
@@ -20,6 +20,7 @@ const Body = styled.div`
   }
   h3 {
     font-size: 1em;
+    text-align: center;
   }
 
   p {
@@ -80,9 +81,9 @@ const Body = styled.div`
   }
 
   hr {
-    border-style: solid;
+    margin: 0 0 2em;
+    border-top: 1px solid;
     border-color: ${({ theme }) => theme.colors.muted};
-    margin: 0 0 2em 0;
   }
 
   blockquote {
@@ -92,7 +93,7 @@ const Body = styled.div`
   }
 
   pre {
-    margin: 0 0 2em 0;
+    margin: 0 0 2em;
     border-radius: 2px;
     background: ${({ theme }) => theme.colors.muted} !important;
     span {
