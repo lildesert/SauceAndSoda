@@ -26,9 +26,6 @@ const Body = styled.div`
   p {
     line-height: 1.6;
     margin: 0 0 2em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
   a {
@@ -104,7 +101,8 @@ const Body = styled.div`
   @media (min-width: ${({ theme }) => theme.screen.desktop}) {
     img {
       width: 80%;
-      margin: 1em 0;
+      display: block;
+      margin: 1em auto;
     }
   }
 `
