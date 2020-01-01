@@ -100,6 +100,10 @@ const Body = styled.div`
     }
   }
 
+  img {
+    margin: 1em 0;
+  }
+
   @media (min-width: ${({ theme }) => theme.screen.desktop}) {
     img {
       width: 80%;
