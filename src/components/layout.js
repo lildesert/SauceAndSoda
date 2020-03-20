@@ -5,6 +5,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import styled, { ThemeProvider } from 'styled-components'
 
 import Header from './header'
+import './layout.scss'
 import theme from '../utils/theme'
 
 const Section = styled.section`

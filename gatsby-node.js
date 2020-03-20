@@ -35,7 +35,7 @@ exports.createPages = ({ graphql, actions }) => {
         // Create main home page
         createPage({
           path: `/`,
-          component: path.resolve(`./src/pages/index.js`),
+          component: path.resolve(`./src/templates/index.js`),
           context: {
             limit: postsPerFirstPage,
             skip: 0,
@@ -48,7 +48,7 @@ exports.createPages = ({ graphql, actions }) => {
         Array.from({ length: numPages }).forEach((_, i) => {
           createPage({
             path: `/${i + 2}/`,
-            component: path.resolve(`./src/pages/index.js`),
+            component: path.resolve(`./src/templates/index.js`),
             context: {
               limit: postsPerPage,
               skip: i * postsPerPage + postsPerFirstPage,
