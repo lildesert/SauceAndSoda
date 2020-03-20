@@ -6,8 +6,8 @@ import logo from '../images/sauceandsoda-black-transparent.png' // logomakr.com/
 
 const Menu = styled.div`
   font-size: 1.1rem;
-  @media(max-width: ${ ({ theme }) => theme.screen.desktop }){
-    &.navbar-menu{
+  @media (max-width: ${({ theme }) => theme.screen.desktop}) {
+    &.navbar-menu {
       padding: 0.5rem;
     }
   }
@@ -19,34 +19,40 @@ const MenuLinkTitle = styled.h4`
 `
 
 const Logo = styled.img`
-  background-color: ${ ({ theme }) => theme.colors.whiteTer };
-  :hover{
-    background-color: ${ ({ theme }) => theme.colors.primary };
+  background-color: ${({ theme }) => theme.colors.whiteTer};
+  :hover {
+    background-color: ${({ theme }) => theme.colors.primary};
   }
 `
 
 const SocialLink = styled.a`
-  :first-child{
+  :first-child {
     margin-right: 16px;
+  }
+`
+
+const BurgerMenu = styled.a`
+  :hover {
+    color: inherit;
   }
 `
 
 class Header extends Component {
   // constructor to set state and bind "this"
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = { showMenu: false }
     this.handleClick = this.handleClick.bind(this)
   }
 
   // function to handle the click
-  handleClick () {
+  handleClick() {
     this.setState(prevState => ({
-      showMenu: !prevState.showMenu
+      showMenu: !prevState.showMenu,
     }))
   }
 
-  render () {
+  render() {
     return (
       <div className="hero-head">
         <nav className="navbar">
@@ -55,24 +61,45 @@ class Header extends Component {
               <Link className="navbar-item" to="/">
                 <Logo src={logo} alt="Logo" />
               </Link>
-              <div className={'navbar-burger burger' + (this.state.showMenu ? ' is-active' : '')} data-target="navbarMenuHeroA" onClick={this.handleClick}>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
+              <BurgerMenu
+                role="button"
+                className={
+                  'navbar-burger burger' +
+                  (this.state.showMenu ? ' is-active' : '')
+                }
+                data-target="navbarMenuHeroA"
+                onClick={this.handleClick}
+              >
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </BurgerMenu>
             </div>
-            <Menu id="navbarMenuHeroA" className={'navbar-menu' + (this.state.showMenu ? ' is-active' : '')}>
+            <Menu
+              id="navbarMenuHeroA"
+              className={
+                'navbar-menu' + (this.state.showMenu ? ' is-active' : '')
+              }
+            >
               <div className="navbar-end">
                 <MenuLinkTitle className="navbar-item">
                   <Link to="/about" activeClassName="is-active">
-                  A propos
+                    A propos
                   </Link>
                 </MenuLinkTitle>
                 <span className="navbar-item">
-                  <SocialLink href="https://www.instagram.com/sauceandsoda_fr/" target="_blank" rel="noopener noreferrer">
+                  <SocialLink
+                    href="https://www.instagram.com/sauceandsoda_fr/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Icon nav="true" icon={['fab', 'instagram']} />
                   </SocialLink>
-                  <SocialLink href="https://twitter.com/SauceAndSoda" target="_blank" rel="noopener noreferrer">
+                  <SocialLink
+                    href="https://twitter.com/SauceAndSoda"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Icon nav="true" icon={['fab', 'twitter']} />
                   </SocialLink>
                 </span>

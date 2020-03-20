@@ -1,11 +1,12 @@
 require('dotenv').config({
-  path: `.env.${ process.env.NODE_ENV }`,
+  path: `.env.${process.env.NODE_ENV}`,
 })
 
 module.exports = {
   siteMetadata: {
     title: 'Sauce And Soda',
-    description: 'Recettes, astuces et inspirations autour des cocktails, du barbecue et de la cuisine',
+    description:
+      'Recettes, astuces et inspirations autour des cocktails, du barbecue et de la cuisine',
     author: '@lildesert',
   },
   plugins: [
@@ -14,7 +15,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `src`,
-        path: `${ __dirname }/src/`,
+        path: `${__dirname}/src/`,
       },
     },
     'gatsby-transformer-sharp',
