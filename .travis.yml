@@ -16,4 +16,4 @@ cache:
 install:
   - yarn install --frozen-lockfile
 script:
-  - yarn run cypress --record
+  - $(npm bin)/cypress run --record
