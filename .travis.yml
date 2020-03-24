@@ -9,11 +9,13 @@ addons:
 cache:
   # Caches $HOME/.npm when npm ci is default script command
   # Caches node_modules in all other cases
-  npm: true
+  yarn: true
   directories:
     # we also need to cache folder with Cypress binary
     - ~/.cache
 install:
-  - npm ci
+  - yarn install --frozen-lockfile
 script:
-  - $(npm bin)/cypress run --record
+  - yarn test
+  - ARGOS_COMMIT=$TRAVIS_COMMIT ARGOS_BRANCH=$TRAVIS_BRANCH
+  - yarn argos upload cypress/screenshots --token $ARGOS_TOKEN || true
