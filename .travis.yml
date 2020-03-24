@@ -17,5 +17,3 @@ install:
   - yarn install --frozen-lockfile
 script:
   - yarn test
-  - ARGOS_COMMIT=$TRAVIS_COMMIT ARGOS_BRANCH=$TRAVIS_BRANCH
-  - yarn argos upload cypress/screenshots --token $ARGOS_TOKEN || true
