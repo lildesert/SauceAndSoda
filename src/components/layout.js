@@ -9,7 +9,7 @@ import './layout.scss'
 import theme from '../utils/theme'
 
 const Section = styled.section`
- @media (min-width: ${ ({ theme }) => theme.screen.tablet }) {
+  @media (min-width: ${({ theme }) => theme.screen.tablet}) {
     padding: 20px;
   }
 `
@@ -40,12 +40,12 @@ const Layout = ({ children }) => (
           <Section className="hero">
             <Header siteTitle={data.site.siteMetadata.title} />
             <div className="hero-body">
-              <div className="container">
-                {children}
-              </div>
+              <div className="container">{children}</div>
             </div>
             <div className="hero-foot">
-              <Copyright className='has-text-centered'>© {new Date().getFullYear()} SauceAndSoda</Copyright>
+              <Copyright className="has-text-centered">
+                © {new Date().getFullYear()} SauceAndSoda
+              </Copyright>
             </div>
           </Section>
         </>

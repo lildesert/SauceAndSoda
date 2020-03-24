@@ -24,8 +24,8 @@ const typography = new Typography({
   overrideThemeStyles: () => ({
     'figure,img': {
       marginBottom: 0,
-    }
-  })
+    },
+  }),
 })
 
 export default typography

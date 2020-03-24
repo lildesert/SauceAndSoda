@@ -5,22 +5,21 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     resolve(
       graphql(`
-      {
-        allContentfulBlogPost {
-          edges {
-            node {
-              slug
-              category {
-                id
-                name
+        {
+          allContentfulBlogPost {
+            edges {
+              node {
+                slug
+                category {
+                  id
+                  name
+                }
+                createdAt(formatString: "DD MMMM, YYYY", locale: "fr")
               }
-              createdAt(formatString: "DD MMMM, YYYY", locale: "fr")
             }
           }
         }
-      }      
-        `
-      ).then(result => {
+      `).then(result => {
         if (result.errors) {
           console.log(result.errors)
           reject(result.errors)
@@ -48,7 +47,7 @@ exports.createPages = ({ graphql, actions }) => {
         // Create additional pagination on home page if needed
         Array.from({ length: numPages }).forEach((_, i) => {
           createPage({
-            path: `/${ i + 2 }/`,
+            path: `/${i + 2}/`,
             component: path.resolve(`./src/templates/index.js`),
             context: {
               limit: postsPerPage,
@@ -64,8 +63,8 @@ exports.createPages = ({ graphql, actions }) => {
         posts.forEach(edge => {
           const {
             node: {
-              category: { name }
-            }
+              category: { name },
+            },
           } = edge
 
           if (name && name !== null) {
@@ -78,12 +77,15 @@ exports.createPages = ({ graphql, actions }) => {
         const categoryList = Array.from(categorySet)
         categoryList.forEach(category => {
           createPage({
-          // convert to kebab-case
-            path: `/category/${ category.replace(/([a-z])([A-Z])/g, '$1-$2').replace(/\s+/g, '-').toLowerCase() }/`,
+            // convert to kebab-case
+            path: `/category/${category
+              .replace(/([a-z])([A-Z])/g, '$1-$2')
+              .replace(/\s+/g, '-')
+              .toLowerCase()}/`,
             component: categoryTemplate,
             context: {
-              category
-            }
+              category,
+            },
           })
         })
 
@@ -93,8 +95,8 @@ exports.createPages = ({ graphql, actions }) => {
             path: node.slug,
             component: path.resolve(`./src/templates/blog-post.js`),
             context: {
-            // Data passed to context is available
-            // in page queries as GraphQL variables.
+              // Data passed to context is available
+              // in page queries as GraphQL variables.
               slug: node.slug,
             },
           })
