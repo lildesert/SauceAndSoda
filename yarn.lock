@@ -788,7 +788,7 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
   version "7.8.7"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.8.7.tgz#8fefce9802db54881ba59f90bb28719b4996324d"
   integrity sha512-+AATMUFppJDw6aiR5NVPHqIQBlV/Pj8wY/EZH+lmvRdUo9xBaz/rF3alAwFJQavvKfeOlPE7oaaDHVbcySbCsg==
@@ -6021,12 +6021,12 @@ gatsby-plugin-styled-components@^3.2.0:
   dependencies:
     "@babel/runtime" "^7.8.7"
 
-gatsby-plugin-typography@2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-typography/-/gatsby-plugin-typography-2.2.2.tgz#94217c9d61e4cc19c1060bf21a960ced459438fe"
-  integrity sha512-t13tyWcperL2aL27m6AtXn30pNrdqhg7Lz23WFm/0dyi64loxGyYKtuytoxbHRDgQMjRlht0Iucq0RNLTtMjVA==
+gatsby-plugin-typography@2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-typography/-/gatsby-plugin-typography-2.4.1.tgz#01a1f30f4f251c1875b66e176fce6859fb2baeae"
+  integrity sha512-OROPbhiMgbVNrLj4T24ScTqE2sKT+DuRA/toSsVVusA8u53V66mS3+koWZd6rJ/26uquBF7OlL6uHtteK/sOjQ==
   dependencies:
-    "@babel/runtime" "^7.0.0"
+    "@babel/runtime" "^7.8.7"
 
 gatsby-react-router-scroll@^2.1.25:
   version "2.1.25"
