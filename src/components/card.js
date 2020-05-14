@@ -92,7 +92,7 @@ const Card = ({ featured, slug, coverImage, title, content, ...props }) => {
             <Img
               fluid={coverImage.fluid}
               backgroundColor={'#ffffff'}
-              alt={featured ? 'img-featured' : 'img'}
+              alt="thumbnail"
             />
             <Overlay />
           </Thumbnail>

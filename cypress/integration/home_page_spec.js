@@ -61,8 +61,10 @@ Cypress.Commands.add('waitForResource', (name, options = {}) => {
 describe('Sauce and Soda testing', function() {
   it('loads homepage', function() {
     cy.visit('/')
-    cy.get('[alt="img-featured"]').then($img => {
-      cy.waitForResource($img[0].currentSrc)
+    cy.get('[alt="thumbnail"]').then(images => {
+      for (let i = 0; i < images.length; i++) {
+        cy.waitForResource(images[i].currentSrc)
+      }
     })
     cy.contains('SauceAndSoda')
     cy.screenshot('homepage')
