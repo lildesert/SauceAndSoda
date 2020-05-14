@@ -35,7 +35,7 @@ Cypress.Commands.add('waitForResource', (name, options = {}) => {
         const interval = setInterval(() => {
           foundResource = win.performance
             .getEntriesByType('resource')
-            .find(item => item.name.endsWith(name))
+            .find(item => item.name.includes(name))
 
           if (!foundResource) {
             // resource not found, will try again
@@ -61,9 +61,9 @@ Cypress.Commands.add('waitForResource', (name, options = {}) => {
 describe('Sauce and Soda testing', function() {
   it('loads homepage', function() {
     cy.visit('/')
-    cy.get('[alt="thumbnail"]').then(images => {
+    cy.get('[alt*="thumbnail-"]').then(images => {
       for (let i = 0; i < images.length; i++) {
-        cy.waitForResource(images[i].currentSrc)
+        cy.waitForResource(images[i].alt.split('-')[1].split('?')[0])
       }
     })
     cy.contains('SauceAndSoda')
