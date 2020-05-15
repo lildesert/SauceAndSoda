@@ -27,37 +27,37 @@ const Overlay = styled.div`
   left: 0;
   background-color: #fff;
   opacity: 0;
-  transition: opacity .4s ease;
-  :hover{
+  transition: opacity 0.4s ease;
+  :hover {
     opacity: 0.14;
   }
 `
 
 const Title = styled.h2`
   text-transform: capitalize;
-  margin: ${ props => (props.featured ? '3rem 0 1.5rem' : '1rem .5rem .5rem') };
-  font-size: ${ props => (props.featured ? '2rem' : '') };
+  margin: ${props => (props.featured ? '3rem 0 1.5rem' : '1rem .5rem .5rem')};
+  font-size: ${props => (props.featured ? '2rem' : '')};
 `
 
 const Meta = styled(BlogPostMeta)`
-  margin: 1rem .5rem 0;
+  margin: 1rem 0.5rem 0;
 `
 
 const Excerpt = styled.p`
-  margin: ${ props => (props.featured ? '0 2rem' : '0 .5rem 1rem') };
+  margin: ${props => (props.featured ? '0 2rem' : '0 .5rem 1rem')};
   line-height: 1.6;
 `
 
 const MoreArrow = styled(StyledIcon)`
   position: relative;
-  transition: all .08s linear;
+  transition: all 0.08s linear;
   left: 0px;
 `
 
 const MoreLink = styled(Link)`
-  margin: ${ props => (props.featured ? '2rem 0 0' : '0 .5rem') };
+  margin: ${props => (props.featured ? '2rem 0 0' : '0 .5rem')};
   display: inline-block;
-  &:hover ${ MoreArrow } {
+  &:hover ${MoreArrow} {
     left: 2px;
   }
 `
@@ -70,7 +70,7 @@ const Container = styled.div`
   &.columns {
     margin: 0;
 
-    @media (min-width: ${ ({ theme }) => theme.screen.tablet }) {
+    @media (min-width: ${({ theme }) => theme.screen.tablet}) {
       flex-direction: row-reverse;
       display: flex;
     }
@@ -83,30 +83,34 @@ const ImagePanel = styled.div`
   }
 `
 
-const Card = ({ ...props }) => {
+const Card = ({ featured, slug, coverImage, title, content, ...props }) => {
   return (
-    <Post className={props.featured ? 'column is-full' : 'column is-one-third'}>
-      <Container className={props.featured ? 'card is-vcentered columns' : '' }>
-        <ImagePanel className={props.featured ? 'column is-7' : '' }>
-          <Thumbnail to={`/${ props.slug }/`}>
-            <Img fluid={props.coverImage.fluid}
-              backgroundColor={'#eeeeee'} />
+    <Post className={featured ? 'column is-full' : 'column is-one-third'}>
+      <Container className={featured ? 'card is-vcentered columns' : ''}>
+        <ImagePanel className={featured ? 'column is-7' : ''}>
+          <Thumbnail to={`/${slug}/`}>
+            <Img
+              fluid={coverImage.fluid}
+              backgroundColor={'#ffffff'}
+              alt={`thumbnail-${coverImage.fluid.src}`}
+            />
             <Overlay />
           </Thumbnail>
         </ImagePanel>
-        <div className={props.featured ? 'column is-5 has-text-centered' : '' }>
+        <div className={featured ? 'column is-5 has-text-centered' : ''}>
           <Meta {...props} />
-          <Link to={`/${ props.slug }/`}>
-            <Title featured={props.featured}>{props.title}</Title>
+          <Link to={`/${slug}/`}>
+            <Title featured={featured}>{title}</Title>
           </Link>
-          <Excerpt featured={props.featured}
+          <Excerpt
+            featured={featured}
             dangerouslySetInnerHTML={{
-              __html: props.content.childMarkdownRemark.excerpt,
+              __html: content.childMarkdownRemark.excerpt,
             }}
           />
-          <MoreLink featured={props.featured} to={`/${ props.slug }/`}>
+          <MoreLink featured={featured} to={`/${slug}/`}>
             <MoreLinkSpan>lire</MoreLinkSpan>
-            <MoreArrow nav="true" icon='long-arrow-alt-right' />
+            <MoreArrow nav="true" icon="long-arrow-alt-right" />
           </MoreLink>
         </div>
       </Container>
