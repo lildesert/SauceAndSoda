@@ -67,6 +67,7 @@ describe('Sauce and Soda testing', function() {
         cy.waitForResource(images[i].alt.split('-')[1].split('?')[0])
       }
     })
+    cy.contains('oulahlalalala')
     cy.contains('SauceAndSoda')
     cy.screenshot('homepage')
   })
