@@ -17,8 +17,8 @@
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "test": "start-server-and-test start http://localhost:8000 cy:run",
-    "argos": "yarn argos upload cypress/screenshots --token $ARGOS_TOKEN || true",
-    "ci": "yarn test && yarn argos"
+    "argos-upload": "yarn argos upload cypress/screenshots --token $ARGOS_TOKEN || true",
+    "ci": "yarn test && yarn argos-upload"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.0",
