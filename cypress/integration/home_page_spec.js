@@ -62,6 +62,7 @@ describe('Sauce and Soda testing', function() {
   it('loads homepage', function() {
     cy.visit('/')
     cy.scrollTo('bottom') // scroll to bottom to load all the images
+    cy.contains('A propos')
     cy.get('[alt*="thumbnail-"]').then(images => {
       for (let i = 0; i < images.length; i++) {
         cy.waitForResource(images[i].alt.split('-')[1].split('?')[0])
