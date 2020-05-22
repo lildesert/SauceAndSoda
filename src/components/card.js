@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import { StyledIcon } from './icon'
@@ -34,9 +34,12 @@ const Overlay = styled.div`
 `
 
 const Title = styled.h2`
-  text-transform: capitalize;
-  margin: ${props => (props.featured ? '3rem 0 1.5rem' : '1rem .5rem .5rem')};
-  font-size: ${props => (props.featured ? '2rem' : '')};
+  ${({ featured }) =>
+    css`
+      text-transform: capitalize;
+      margin: ${featured ? '3rem 0 1.5rem' : '1rem .5rem .5rem'};
+      font-size: ${featured ? '2rem' : ''};
+    `}
 `
 
 const Meta = styled(BlogPostMeta)`
